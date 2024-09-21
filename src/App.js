@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import React , {useEffect} from 'react';
 import './App.css';
+import model from './model'
+import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
+import { StoreProvider  } from 'easy-peasy'
+import { createStore  , useStoreActions} from 'easy-peasy';
 
 function App() {
+  const store = createStore(model);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <StoreProvider store={store}>
+    <div className=' container flex flex-col items-center justify-center py-6 gap-3 '>
+     <TodoList />
+     <AddTodo />
     </div>
+    </StoreProvider>
   );
 }
 
